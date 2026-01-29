@@ -1,0 +1,34 @@
+/* Universal Values */
+* {
+    margin: 0;
+    padding: 0;
+    writing-mode: horizontal-tb;
+    font-size: 1em;
+    font-family: "Bungee";
+}
+
+.hidden {
+    display: none !important;
+}
+
+.bungee-regular {
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#welcomeScreen {
+    padding: 0;
+    width: 100vw;
+    display: grid;
+    justify-content: center;
+    align-items: none;
+    border-style: none;
+}
+
+svg {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    border: 1px solid blue;
+}
