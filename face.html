@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Kaiyu's project for Rach">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="author" content="Kaiyu Nguyen">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+        <title>Rach's Photobooth</title>
+
+    </head>
+
+    <body>
+        <section id="welcomeScreen"> 
+            <svg viewbox="0 0 450 650">
+                <path id="lineAC" d="M -250 350 q 475 -300 950 0" fill="none"/>
+                <text style="fill:red;font-size:50px;">
+                    <textPath href="#lineAC" startOffset="10%">Welcome to your photobooth</textPath>
+                </text>
+            </svg>
+        </section>
+
+        <section id="photoboothScreen" class="hidden">
+            I love you loser
+        </section>
+
+        <script src="effects.js"></script>
+    </body>
+</html> 
