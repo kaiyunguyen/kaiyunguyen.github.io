@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="style.css">
     <head>
+        <link rel="stylesheet" href="style/style.css">
         <meta charset="UTF-8">
         <meta name="description" content="Kaiyu's project for Rach">
         <meta name="keywords" content="HTML, CSS, JavaScript">
@@ -19,11 +19,18 @@
     <body>
         <section id="welcomeScreen"> 
             <svg viewbox="0 0 450 650">
-                <path id="lineAC" d="M -250 350 q 475 -300 950 0" fill="none"/>
-                <text style="fill:red;font-size:50px;">
-                    <textPath href="#lineAC" startOffset="10%">Welcome to your photobooth</textPath>
+                <path id="lineAC" pathLength="2" d="M -250 350 q 475 -350 950 0" fill="none"/>
+                <text>
+                    <textPath href="#lineAC" startOffset="1">Welcome to your photobooth</textPath>
                 </text>
             </svg>
+            <img src="style/bea-removebg-preview.png" class="welcomeScreenImg" id="bea">
+            <img src="style/lorde-removebg-preview.png" class="welcomeScreenImg" id="lorde">
+            <img src="style/maria.png" class="welcomeScreenImg" id="maria">
+            <img src="style/miffystar.png" class="welcomeScreenImg" id="miffystar">
+            <img src="style/sleepakkuma.png" class="welcomeScreenImg" id="sleepakkuma">
+            <img src="style/yumi.png" class="welcomeScreenImg" id="yumi">
+            <span id="welcomeOverlayText">Click anywhere to continue loser</span>
         </section>
 
         <section id="photoboothScreen" class="hidden">
