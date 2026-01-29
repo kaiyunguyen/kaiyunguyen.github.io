@@ -1,0 +1,109 @@
+/* Universal Values */
+* {
+    margin: 0;
+    padding: 0;
+    writing-mode: horizontal-tb;
+    font-size: 1em;
+    font-family: "Bungee";
+}
+
+body {
+    background-color: #e8d8ce;
+}
+
+textPath {
+    font-size: 5vmin;
+    letter-spacing: .05em;
+    text-anchor: middle;
+    text-shadow: 4px 6px pink;
+}
+
+svg {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+}
+
+/* Classes */
+.welcomeScreenImg {
+    position: absolute;
+    z-index: 0;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* IDs */
+#bea {
+    width: 20vmax;
+    height: 20vmax;
+    transform: rotate(90deg);
+}
+
+#lorde {
+    width: 20vmax;
+    height: 25vmax;
+    transform: rotate(-45deg);
+    right: 0vh;
+}
+
+#maria {
+    width: 25vmax;
+    height: 40vmax;
+    bottom: 0vh;
+}
+
+#miffystar {
+    width: 30vmax;
+    height: 30vmax;
+    bottom: 0vh;
+    left: 35vh;
+}
+
+#sleepakkuma {
+    width: 40vmax;
+    height: 30vmax;
+    bottom: 0vh;
+    right: 30vh;
+}
+
+#yumi {
+    width: 30vmax;
+    height: 40vmax;
+    bottom: 0vh;
+    right: 0vh;
+}
+
+#welcomeScreen {
+    position: relative;
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    justify-content: center;
+    align-items: none;
+    border-style: none;
+}
+
+#welcomeOverlayText {
+    position: absolute;
+    display: grid;
+    font-size: 3vmin;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    animation: 2s blinking infinite;
+    color: red;
+}
+
+/* Animations */
+@keyframes blinking {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
