@@ -5,6 +5,7 @@ refreshTimer = setTimeout(() => {
     location.reload();
 }, 15000);
 
+const photos = [];
 const welcome = document.getElementById("welcomeScreen");
 const photobooth = document.getElementById("photoboothScreen");
 const countdownEl = document.getElementById("countdown");
@@ -45,13 +46,8 @@ welcome.addEventListener("click", () => {
 });
 
 shutterButton.addEventListener("click", () => {
-    startCountdown(() => {
-        flash();
-        const imageData = takeSnapshot();
-        console.log("Smile");
-        console.log(imageData);
-    })
-})
+    takePhotoStrip();
+});
 
 function startCountdown(onComplete) {
     let count = 5;
@@ -87,10 +83,40 @@ function takeSnapshot() {
     const videoHeight = video.videoHeight;
     const videoWidth = video.videoWidth;
 
+    if (!w || !h) return;
+
     canvas.height = videoHeight;
     canvas.width = videoWidth;
 
+    ctx.save();
+    ctx.translate(w, 0);
+    ctx.scale(-1, 1);
     ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+    ctx.restore();
+
+    const imageData = canvas.toDataURL("image/png");
+    photos.push(imageData);
+}
+
+function takePhotoStrip() {
+    photos.length = 0;
+
+    let shots = 0;
+
+    const takeNext = () => {
+        if (shots === 3) {
+            console.log("Strip complete", photos);
+            return;
+        }
+
+        startCountdown(() => {
+            takeSnapshot();
+            shots++;
+            setTimeout(takeNext, 700);
+        });
+    };
+
+    takeNext();
 }
 
 function flash() {
