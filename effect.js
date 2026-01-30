@@ -110,6 +110,7 @@ function takePhotoStrip() {
 
         startCountdown(() => {
             takeSnapshot();
+            flash();
             shots++;
             setTimeout(takeNext, 700);
         });
@@ -149,19 +150,29 @@ function chooseStrip() {
 
 shutterButton.addEventListener("click", takePhotoStrip);
 
-const stripLayout = {
+const stripLayouts = {
     height: 1800,
     width: 600,
 
-    slots: [
+    "style/strip1.png": [
+        { x: 110, y: 225, w: 382, h: 250 },
+        { x: 110, y: 680, w: 382, h: 250 },
+        { x: 110, y: 1170, w: 382, h: 250 }
+    ],
+    "style/strip2.png": [
+        { x: 115, y: 150, w: 365, h: 275 },
+        { x: 115, y: 620, w: 365, h: 275 },
+        { x: 115, y: 1095, w: 365, h: 275 }
+    ],
+    "style/strip3.png": [
         { x: 80, y: 150, w: 440, h: 360 },
         { x: 80, y: 550, w: 440, h: 360 },
         { x: 80, y: 950, w: 440, h: 360 }
     ]
 };
 
-stripCanvas.width = stripLayout.width;
-stripCanvas.height = stripLayout.height;
+stripCanvas.width = stripLayouts.width;
+stripCanvas.height = stripLayouts.height;
 
 function flash() {
     const flash = document.createElement("div");
@@ -188,9 +199,11 @@ async function buildPhotoStrip(stripImageSrc) {
     stripCtx.clearRect(0, 0, stripCanvas.width, stripCanvas.height);
     stripCtx.drawImage(stripImage, 0, 0, stripCanvas.width, stripCanvas.height);
 
+    const layout = stripLayouts[stripImageSrc];
+
     for (let i = 0; i < photos.length; i++) {
         const photoImg = await loadImage(photos[i]);
-        const slot = stripLayout.slots[i];
+        const slot = layout[i];
 
         stripCtx.drawImage(photoImg, slot.x, slot.y, slot.w, slot.h, );
     }
@@ -199,6 +212,11 @@ async function buildPhotoStrip(stripImageSrc) {
 }
 
 function showFinalStrip() {
+    // Hide everything else
+    photobooth.classList.add("hidden");
+    welcome.classList.add("hidden");
+
+    // Show the strip full screen
     document.body.appendChild(stripCanvas);
     stripCanvas.style.position = "fixed";
     stripCanvas.style.inset = "0";
@@ -206,4 +224,52 @@ function showFinalStrip() {
     stripCanvas.style.height = "100vh";
     stripCanvas.style.objectFit = "contain";
     stripCanvas.style.zIndex = "10";
+
+    // Take Another Button
+    const takeAnotherBtn = document.createElement("button");
+    takeAnotherBtn.textContent = "Take Another";
+    styleStripButton(takeAnotherBtn);
+    takeAnotherBtn.style.bottom = "20px";
+    takeAnotherBtn.style.right = "20px";
+
+    // Save Button
+    const saveBtn = document.createElement("button");
+    saveBtn.textContent = "Save Photostrip";
+    styleStripButton(saveBtn);
+    saveBtn.style.bottom = "80px"; // stacked above Take Another
+    saveBtn.style.right = "20px";
+
+    document.body.appendChild(takeAnotherBtn);
+    document.body.appendChild(saveBtn);
+
+    // Take Another Click
+    takeAnotherBtn.addEventListener("click", () => {
+        stripCanvas.remove();
+        takeAnotherBtn.remove();
+        saveBtn.remove();
+
+        photobooth.classList.remove("hidden");
+        photos.length = 0; // clear previous photos
+    });
+
+    // Save Click
+    saveBtn.addEventListener("click", () => {
+        const link = document.createElement("a");
+        link.href = stripCanvas.toDataURL("image/png");
+        link.download = "photostrip.png";
+        link.click();
+    });
+}
+
+/* Helper function to style buttons consistently */
+function styleStripButton(btn) {
+    btn.style.position = "fixed";
+    btn.style.padding = "1rem 2rem";
+    btn.style.fontSize = "1.2rem";
+    btn.style.cursor = "pointer";
+    btn.style.zIndex = "11";
+    btn.style.borderRadius = "10px";
+    btn.style.background = "rgba(255,0,0,0.8)";
+    btn.style.color = "white";
+    btn.style.border = "none";
 }
