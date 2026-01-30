@@ -47,7 +47,7 @@ svg {
     width: 20vmax;
     height: 25vmax;
     transform: rotate(-45deg);
-    right: 0vh;
+    right: 10vh;
 }
 
 #maria {
@@ -58,16 +58,16 @@ svg {
 
 #miffystar {
     width: 30vmax;
-    height: 30vmax;
+    height: 22vmax;
     bottom: 0vh;
-    left: 35vh;
+    left: 50vh;
 }
 
 #sleepakkuma {
     width: 40vmax;
     height: 30vmax;
     bottom: 0vh;
-    right: 30vh;
+    right: 40vh;
 }
 
 #yumi {
@@ -82,7 +82,7 @@ svg {
     display: grid;
     height: 100vh;
     width: 100vw;
-    z-index: 1;
+    z-index: 2;
     justify-content: center;
     align-items: none;
     border-style: none;
@@ -94,11 +94,30 @@ svg {
     font-size: 3vmin;
     height: 100vh;
     width: 100vw;
-    z-index: 2;
+    z-index: 1;
     justify-content: center;
     align-items: center;
     animation: 2s blinking infinite;
     color: red;
+}
+
+#photoboothScreenText {
+    position: absolute;
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    bottom: 1vh;
+    z-index: 3;
+}
+
+#webcamVideo {
+    position: relative;
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Animations */
