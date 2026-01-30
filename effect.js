@@ -11,8 +11,8 @@ const photobooth = document.getElementById("photoboothScreen");
 const webcamVideo = document.getElementById("webcamVideo");
 const constraints = {
     video: {
-        width: 1280,
-        height: 720,
+        width: 900,
+        height: 600,
         facingMode: "user",
     }
 };
